@@ -76,4 +76,12 @@
   (mapc #'load (directory-files user-specific-dir nil ".*el$")))
 (if (file-exists-p user-specific-config) (load user-specific-config))
 
+;;custom
+(setq dotfiles-dir (file-name-directory
+                    (or (buffer-file-name) load-file-name)))
+(load-file (concat dotfiles-dir "/custom.el"))      
+
+(if (eq system-type 'windows-nt) 
+(load-file (concat dotfiles-dir "/windows.el"))
+)              
 ;;; init.el ends here
